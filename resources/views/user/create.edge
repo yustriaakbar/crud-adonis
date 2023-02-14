@@ -1,0 +1,39 @@
+@layout('layouts/index')
+@set('title', 'Create Users')
+@section('content')
+<div class="row">
+    <div class="col-md-12">
+      @if(flashMessages.has('error'))
+        {{--  <div class="alert alert-danger">{{ flashMessages.get('error.username') }}</div>  --}}
+        @each((err, key) in flashMessages.get('error'))
+          <div class="alert alert-danger">{{ key }} : {{ err }}</div>
+        @endeach
+      @endif
+      <div class="card">
+        <div class="card-header">
+          CREATE POSTS
+        </div>
+        <div class="card-body">
+          <form action="{{ route('users.store') }}" method="POST">
+            {{--  {{ csrfField() }}  --}}
+            <div class="form-group">
+              <label>USERNAME</label>
+              <input class="form-control" type="text" name="username" placeholder="Masukkan Username">
+            </div>
+            <div class="form-group">
+              <label>EMAIL</label>
+              <input class="form-control" type="email" name="email" placeholder="Masukkan Email">
+            </div>
+            <div class="form-group">
+              <label>PASSWORD</label>
+              <input class="form-control" type="password" name="password" placeholder="Masukkan Password">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-md btn-success">SAVE</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
